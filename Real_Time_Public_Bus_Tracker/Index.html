@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urban Flow - Smart Public Transport Tracking</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="container">
+            <a href="#" class="logo">
+                <i class="fas fa-bus"></i>
+                URBAN FLOW
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#demo">Live Demo</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero-section">
+            <div class="container">
+                <div class="hero-container fade-in">
+                    <div class="hero-content">
+                        <h1>Smart Public Transport for Every City</h1>
+                        <p>Never miss your bus again. Track real-time locations, get accurate arrival times, and plan your journey with confidence in small cities and growing towns.</p>
+                        <div class="cta-buttons">
+                            <a href="#demo" class="btn-primary">
+                                <i class="fas fa-rocket"></i>
+                                Try Live Demo
+                            </a>
+                            <a href="#features" class="btn-secondary">
+                                <i class="fas fa-info-circle"></i>
+                                Learn More
+                            </a>
+                        </div>
+                    </div>
+                    <div class="hero-visual">
+                        <div style="background: linear-gradient(135deg, var(--primary), var(--primary-dark)); padding: 3rem; border-radius: 1rem; color: white; text-align: center;">
+                            <i class="fas fa-bus" style="font-size: 4rem; margin-bottom: 1rem; display: block;"></i>
+                            <h3 style="margin-bottom: 1rem;">Real-Time GPS Tracking</h3>
+                            <p>Live bus locations, arrival predictions, and route optimization powered by advanced GPS technology.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="demo" class="app-section fade-in">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Live Demo - Real-Time Bus Tracking</h2>
+                    <p>Experience our GPS-enabled transport tracker in action. See live bus locations, arrival times, and interactive mapping.</p>
+                </div>
+
+                <div class="demo-container">
+                    <div class="demo-header">
+                        <h3><i class="fas fa-satellite"></i> GPS Bus Tracker</h3>
+                        <div class="status-indicator">
+                            <div class="status-dot"></div>
+                            Live Tracking Active
+                        </div>
+                    </div>
+
+                    <div class="demo-content">
+                        <div class="demo-sidebar">
+                            <div class="search-section">
+                                <input type="text" class="search-input" placeholder="Search for bus stops or routes..." id="searchInput">
+                                <div class="quick-stops">
+                                    <div class="quick-stop" onclick="selectStop('Main Street')">Main Street</div>
+                                    <div class="quick-stop" onclick="selectStop('City Center')">City Center</div>
+                                    <div class="quick-stop" onclick="selectStop('Hospital')">Hospital</div>
+                                    <div class="quick-stop" onclick="selectStop('University')">University</div>
+                                </div>
+                            </div>
+
+                            <div class="routes-section" id="routesSection">
+                                <!-- Routes populated by JavaScript -->
+                            </div>
+                        </div>
+
+                        <div class="demo-map">
+                            <div id="demoMap"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features-section fade-in">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Powerful Features for Smart Cities</h2>
+                    <p>Everything you need for efficient, reliable public transport tracking and management.</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-satellite-dish"></i>
+                        <h3>Real-Time GPS Tracking</h3>
+                        <p>Live bus locations updated every 30 seconds with precise GPS coordinates and arrival predictions.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <h3>Interactive Maps</h3>
+                        <p>Full-featured mapping with route visualization, stop locations, and user position tracking.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>Low-Bandwidth Optimized</h3>
+                        <p>Designed for small cities with limited internet infrastructure. Uses only ~5KB per update.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-bell"></i>
+                        <h3>Smart Notifications</h3>
+                        <p>Get alerts about delays, route changes, and arrival reminders to never miss your bus.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-route"></i>
+                        <h3>Multi-Route Support</h3>
+                        <p>Track multiple bus routes simultaneously with color-coded visualization and filtering.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>Emergency SOS System</h3>
+                        <p>One-tap emergency assistance with location sharing to authorities and emergency contacts.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- SOS Button -->
+    <button class="sos-button" onclick="showSOSModal()">
+        <i class="fas fa-exclamation-triangle"></i>
+        <div class="sos-text">SOS</div>
+    </button>
+
+    <!-- SOS Modal -->
+    <div id="sosModal" class="sos-modal">
+        <div class="sos-modal-content">
+            <h3><i class="fas fa-exclamation-triangle"></i> Emergency Alert</h3>
+            <p>This will send your current location to emergency services and your registered emergency contacts. Are you sure you want to proceed?</p>
+            <div class="sos-actions">
+                <button class="sos-confirm" onclick="triggerSOS()">Send Emergency Alert</button>
+                <button class="sos-cancel" onclick="closeSOSModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Urban Flow</h3>
+                    <p>Making public transport smart, reliable, and accessible for every city through advanced GPS tracking and real-time data.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Product</h4>
+                    <a href="#demo">Live Demo</a>
+                    <a href="#features">Features</a>
+                    <a href="#">API Documentation</a>
+                    <a href="#">Support</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <a href="#">About Us</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Urban Flow. All rights reserved. | Making cities smarter, one bus at a time.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js"></script>
+    <script type="" src="app.js"></script>
+</body>
+</html>
